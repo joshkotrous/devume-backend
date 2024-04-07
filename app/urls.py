@@ -16,7 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from devume.views.profiles import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView
+from devume.views.users import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin', admin.site.urls),
+    path('api/users', UserListView.as_view(), name="users_retrieve"),
+    path('api/users/<int:pk>', UserRetrieveView.as_view(), name="users_retrieve"),
+    path('api/users/create', UserCreateView.as_view(), name="user_create"),
+    path('api/users/create/', UserCreateView.as_view(), name="user_create"),
+    path('api/users/update', UserUpdateView.as_view(), name="users_update"),
+    path('api/profiles', ProfileRetrieveView.as_view(), name="profiles_retrieve"),
+    path('api/profiles/create', ProfileCreateView.as_view(), name="profiles_create"),
+    path('api/profiles/update', ProfileUpdateView.as_view(), name="profiles_update"),
+
+
+
 ]
