@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from devume.views.profiles import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView, ProfileListView
-from devume.views.users import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
-from devume.views.login import LoginView
+from devume.views.profiles_view import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView, ProfileListView
+from devume.views.users_view import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
+from devume.views.login_view import LoginView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
@@ -32,11 +32,11 @@ urlpatterns = [
     path('api/users/update', UserUpdateView.as_view(), name="users_update"),
     path('api/profiles', ProfileListView.as_view(), name="profiles_list"),
     path('api/profiles/', ProfileListView.as_view(), name="profiles_list"),
-    path('api/profiles/<int:pk>', ProfileRetrieveView.as_view(), name="profiles_retrieve"),
+    path('api/profiles/<uuid:pk>', ProfileRetrieveView.as_view(), name="profiles_retrieve"),
     path('api/profiles/create', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/create/', ProfileCreateView.as_view(), name="profiles_create"),
 
-    path('api/profiles/update', ProfileUpdateView.as_view(), name="profiles_update"),
+    path('api/profiles/update/<uuid:pk>', ProfileUpdateView.as_view(), name="profiles_update"),
 
 
 

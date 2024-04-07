@@ -12,6 +12,7 @@ class ProfileListView(ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    
 class ProfileRetrieveView(RetrieveAPIView):
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
@@ -29,3 +30,8 @@ class ProfileCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+
+    def perform_create(self, serializer):
+        # Set the user_id field to the ID of the authenticated user
+        serializer.save(user=self.request.user)
