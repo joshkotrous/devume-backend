@@ -11,14 +11,14 @@ class Profile(models.Model):
 
     uuid = models.UUIDField(primary_key = True, default=uuid.uuid4)
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    birth_date = models.DateField()
-    bio = models.CharField(max_length=1000)
-    city = models.ForeignKey(City,  on_delete=models.CASCADE, null=True)
-    state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
-    modified_at = models.DateTimeField(auto_now=True, null=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    bio = models.CharField(max_length=1000, null=True, blank=True )
+    city = models.ForeignKey(City,  on_delete=models.CASCADE, null=True, blank=True)
+    state = models.ForeignKey(State, on_delete=models.CASCADE, null=True, blank=True)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True, blank=True)
     def __str__(self):
       return self.name
