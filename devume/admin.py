@@ -12,15 +12,13 @@ class ProfileAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['uuid']}),
         (None, {'fields': ['user_id']}),
-        (None, {'fields': ['first_name']}),
-        (None, {'fields': ['last_name']}),
         (None, {'fields': ['birth_date']}),
         (None, {'fields': ['bio']}),
         (None, {'fields': ['city']}),
         (None, {'fields': ['created_at']}),
         (None, {'fields': ['modified_at']})
     ]
-    list_display = ('uuid', 'user_id', 'first_name', 'last_name', 'birth_date', 'bio', 'city')
+    list_display = ('uuid', 'user_id', 'birth_date', 'bio', 'city')
 
 class CityAdmin(admin.ModelAdmin):
     fieldSets = [

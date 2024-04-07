@@ -11,8 +11,6 @@ class Profile(models.Model):
 
     uuid = models.UUIDField(primary_key = True, default=uuid.uuid4)
     user = models.OneToOneField(User,  on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50, null=True, blank=True)
-    last_name = models.CharField(max_length=50, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     bio = models.CharField(max_length=1000, null=True, blank=True )
     city = models.ForeignKey(City,  on_delete=models.CASCADE, null=True, blank=True)

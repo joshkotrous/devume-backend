@@ -20,7 +20,7 @@ from devume.views.profiles import ProfileRetrieveView, ProfileCreateView, Profil
 from devume.views.users import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 
 urlpatterns = [
-    path('api/admin', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path('api/users', UserListView.as_view(), name="users_retrieve"),
     path('api/users/<int:pk>', UserRetrieveView.as_view(), name="users_retrieve"),
     path('api/users/create', UserCreateView.as_view(), name="user_create"),
