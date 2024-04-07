@@ -3,6 +3,8 @@ from django.test import TestCase, Client
 import json
 
 class UserViewTestCase(TestCase):
+    # Setup test case
+    # Built in function from Django
     def setUp(self):
         self.client = Client()
 
@@ -22,3 +24,8 @@ class UserViewTestCase(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.first().username, 'testuser122')
+
+    # Test case tear down procedures
+    # Built in function from Django
+    def tearDown(self):
+        return None
