@@ -39,7 +39,7 @@ class ProfileViewTestCase(APITestCase):
         self.profile = Profile.objects.create(user=self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
-        response = self.client.get(f'/api/profiles/{self.profile.uuid}')
+        response = self.client.get(f'/api/profiles/{self.profile.uuid}', headers=headers)
         self.assertEqual(response.status_code, 200)
         self.assertNotIsInstance(response.json(), list)
 
@@ -52,6 +52,16 @@ class ProfileViewTestCase(APITestCase):
         self.profile = Profile.objects.create(user=self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
-        response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json')
-        print(response.content)
+        response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json', headers=headers)
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.json()['birth_date'], profile_data['birth_date'])
+        self.assertEquals(response.json()['bio'], profile_data['bio'])
+    
+    def test_update_profile_unauth(self):
+        profile_data = {
+            'birth_date':'2024-01-01',
+            'bio': 'test',
+        }
+        self.profile = Profile.objects.create(user=self.user)
+        response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json')
+        self.assertEquals(response.status_code, 403)
