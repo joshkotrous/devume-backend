@@ -36,7 +36,7 @@ urlpatterns = [
     path('api/profiles/create', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/create/', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/update/<uuid:pk>', ProfileUpdateView.as_view(), name="profiles_update"),
-    path('api/key/create', ApiKeyView.as_view(), name="api_key_create"),
+    path('api/keys/create', ApiKeyView.as_view(), name="api_key_create"),
 
 
 

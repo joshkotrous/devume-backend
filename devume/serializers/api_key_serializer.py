@@ -5,5 +5,4 @@ from devume.models.api_key import ApiKey
 class ApiKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = ApiKey
-        fields = "__all__"
-        
+        exclude = ['user']        

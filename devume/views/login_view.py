@@ -19,10 +19,10 @@ class LoginView(APIView):
                 login(request, user)
 
                 # Generate token
-                # token, created = Token.objects.get_or_create(user=user)
+                token, created = Token.objects.get_or_create(user=user)
 
-                return Response({'session_id': request.session.session_key})
+                return Response({'session_id': request.session.session_key, 'token': token.key})
             else:
                 return Response({'message': 'Invalid credentials'}, status=400)
         except Exception as e:
-            return Response({'message': 'Error occurred: ' +  str(e)})
+            return Response({'message': 'Error occurred: ' +  str(e)}, status=400)

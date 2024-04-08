@@ -65,3 +65,5 @@ class ProfileViewTestCase(APITestCase):
         self.profile = Profile.objects.create(user=self.user)
         response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json')
         self.assertEquals(response.status_code, 403)
+
+
