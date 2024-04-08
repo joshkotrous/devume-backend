@@ -20,7 +20,7 @@ class LoginViewTestCase(APITestCase):
         response = self.client.post('/api/login', user_data, format='json')
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn('token', response.data)
+        self.assertIn('session_id', response.data)
 
     # Test case tear down procedures
     # Built in function from Django
