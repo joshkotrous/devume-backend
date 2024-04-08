@@ -139,4 +139,9 @@ HOST=''
 
 APPEND_SLASH = True
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    # Other DRF settings
+}

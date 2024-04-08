@@ -19,11 +19,11 @@ from django.urls import path
 from devume.views.profiles_view import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView, ProfileListView
 from devume.views.users_view import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 from devume.views.login_view import LoginView
+from devume.views.api_key_view import ApiKeyView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/login', LoginView.as_view(), name="login"),
-
     path('api/login/', LoginView.as_view(), name="login"),
     path('api/users', UserListView.as_view(), name="users_retrieve"),
     path('api/users/<int:pk>', UserRetrieveView.as_view(), name="users_retrieve"),
@@ -35,8 +35,9 @@ urlpatterns = [
     path('api/profiles/<uuid:pk>', ProfileRetrieveView.as_view(), name="profiles_retrieve"),
     path('api/profiles/create', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/create/', ProfileCreateView.as_view(), name="profiles_create"),
-
     path('api/profiles/update/<uuid:pk>', ProfileUpdateView.as_view(), name="profiles_update"),
+    path('api/key/create', ApiKeyView.as_view(), name="api_key_create"),
+
 
 
 

@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView ,CreateAPIView, ListAPIView
 from devume.serializers.user_serializer import UserSerializer
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class UserListView(ListAPIView):
