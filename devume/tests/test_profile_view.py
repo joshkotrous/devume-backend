@@ -1,5 +1,7 @@
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+
 
 from devume.models.profile import Profile
 
@@ -10,6 +12,8 @@ class ProfileViewTestCase(APITestCase):
         self.username2 = 'test_user2'
         self.user = User.objects.create_user(username=self.username, password=self.password)
         self.user2 = User.objects.create_user(username=self.username2, password=self.password)
+        self.token = Token.objects.create(user=self.user)
+
 
 
     
@@ -17,7 +21,9 @@ class ProfileViewTestCase(APITestCase):
         # Simulate login and get session cookie
         self.client.force_login(self.user)
         session_cookie = self.client.cookies['sessionid'].value
-        headers = {'Cookie': f'sessionid={session_cookie}'}  # Include session cookie in headers
+        headers = {'Cookie': f'sessionid={session_cookie}'} 
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
+ # Include session cookie in headers
         self.profile = Profile.objects.create(user=self.user)
         self.profile = Profile.objects.create(user=self.user2)
         response = self.client.get('/api/profiles', headers=headers)
@@ -29,6 +35,9 @@ class ProfileViewTestCase(APITestCase):
         self.client.force_login(self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'} 
+
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
+
         response = self.client.post('/api/profiles/create', headers=headers)
         profiles = Profile.objects.all()
         self.assertEqual(response.status_code, 201)
@@ -39,6 +48,9 @@ class ProfileViewTestCase(APITestCase):
         self.profile = Profile.objects.create(user=self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
+
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
+
         response = self.client.get(f'/api/profiles/{self.profile.uuid}', headers=headers)
         self.assertEqual(response.status_code, 200)
         self.assertNotIsInstance(response.json(), list)
@@ -52,6 +64,8 @@ class ProfileViewTestCase(APITestCase):
         self.profile = Profile.objects.create(user=self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
+
         response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json', headers=headers)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.json()['birth_date'], profile_data['birth_date'])
@@ -62,8 +76,9 @@ class ProfileViewTestCase(APITestCase):
             'birth_date':'2024-01-01',
             'bio': 'test',
         }
+
         self.profile = Profile.objects.create(user=self.user)
         response = self.client.put(f'/api/profiles/update/{self.profile.uuid}', profile_data, format='json')
-        self.assertEquals(response.status_code, 403)
+        self.assertEquals(response.status_code, 401)
 
 
