@@ -24,6 +24,8 @@ from devume.views.cities_view import CitiesListView, CitiesCreateView, CitiesRet
 from devume.views.countries_view import CountriesCreateView, CountriesListView, CountriesRetrieveView, CountriesUpdateView
 from devume.views.states_view import StatesCreateView, StatesListView, StatesRetrieveView, StatesUpdateView
 from devume.views.work_experience_view import WorkExperienceCreateView, WorkExperienceListView, WorkExperienceRetrieveView, WorkExperienceUpdateView
+from devume.views.education_view import EducationCreateView, EducationListView, EducationRetrieveView, EducationUpdateView
+from devume.views.degree_view import DegreeListView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
@@ -57,7 +59,12 @@ urlpatterns = [
     path('api/work_experience/<uuid:profile_id>', WorkExperienceRetrieveView.as_view(), name='work_experience_retrieve'),
     path('api/work_experience/create', WorkExperienceCreateView.as_view(), name='work_experience_create'),
     path('api/work_experience/<int:pk>/update', WorkExperienceUpdateView.as_view(), name='work_experience_update'),
-
+    path('api/education', EducationListView.as_view(), name='education_list'),
+    path('api/education/<uuid:profile_id>', EducationRetrieveView.as_view(), name='education_retrieve'),
+    path('api/education/<int:pk>/update', EducationUpdateView.as_view(), name='education_update'),
+    path('api/education/create', EducationCreateView.as_view(), name='education_create'),
+    path('api/degrees', DegreeListView.as_view(), name='degree_list'),
+    
     
 
 

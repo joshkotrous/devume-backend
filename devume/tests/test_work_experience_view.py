@@ -48,7 +48,6 @@ class WorkExperienceViewTestCase(APITestCase):
         self.client.post('/api/work_experience/create', headers=headers)
 
         response = self.client.get(f'/api/work_experience/{self.profile.uuid}', headers=headers)
-        print(response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.json(), list)
 
