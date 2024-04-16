@@ -5,28 +5,29 @@ from rest_framework.permissions import IsAuthenticated
 
 from devume.models.profile import Profile
 from devume.serializers.profile_serializer import ProfileSerializer
+from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
 
 class ProfileListView(ListAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     
 class ProfileRetrieveView(RetrieveAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
 class ProfileUpdateView(UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
 class ProfileCreateView(CreateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
