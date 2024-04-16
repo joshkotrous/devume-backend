@@ -57,7 +57,6 @@ class EducationViewTestCase(APITestCase):
             'school_name': 'NYU'
         }
         response = self.client.post('/api/education/create', education_data)
-        print(response.data)
         self.assertEqual(response.status_code, 201)
 
 
