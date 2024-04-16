@@ -33,9 +33,7 @@ class WorkExperienceViewTestCase(APITestCase):
         self.client.force_login(self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'} 
-
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
-
         response = self.client.post('/api/work_experience/create', headers=headers)
         self.assertEqual(response.status_code, 201)
 
@@ -43,22 +41,26 @@ class WorkExperienceViewTestCase(APITestCase):
         self.client.force_login(self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
+     
 
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
+        self.client.post('/api/work_experience/create', headers=headers)
+        self.client.post('/api/work_experience/create', headers=headers)
 
         response = self.client.get(f'/api/work_experience/{self.profile.uuid}', headers=headers)
+        print(response.data)
         self.assertEqual(response.status_code, 200)
-        self.assertNotIsInstance(response.json(), list)
+        self.assertIsInstance(response.json(), list)
 
     def test_update_work_experience(self):
         work_experience_data = {
-            'birth_date':'2024-01-01',
-            'bio': 'test',
+            'start_date':'2024-01-01',
+            'company': 'test',
         }
         self.client.force_login(self.user)
         session_cookie = self.client.cookies['sessionid'].value
         headers = {'Cookie': f'sessionid={session_cookie}'}
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
         self.work_experience = WorkExperience.objects.create(profile=self.profile)
-        response = self.client.put(f'/api/work_experience/update/{self.work_experience.uuid}', work_experience_data, format='json', headers=headers)
+        response = self.client.patch(f'/api/work_experience/{self.work_experience.id}/update', work_experience_data, format='json', headers=headers)
         self.assertEquals(response.status_code, 200)

@@ -54,7 +54,12 @@ urlpatterns = [
     path('api/states/create', StatesCreateView.as_view(), name="states_create"),
     path('api/states/<int:pk>/update', StatesUpdateView.as_view(), name="states_update"),
     path('api/work_experience', WorkExperienceListView.as_view(), name='work_experience_list'),
-    path('api/work_experience/<uuid:profile>', WorkExperienceRetrieveView.asView(), name='work_experience_retrieve')
+    path('api/work_experience/<uuid:profile_id>', WorkExperienceRetrieveView.as_view(), name='work_experience_retrieve'),
+    path('api/work_experience/create', WorkExperienceCreateView.as_view(), name='work_experience_create'),
+    path('api/work_experience/<int:pk>/update', WorkExperienceUpdateView.as_view(), name='work_experience_update'),
+
+    
+
 
 
 ]

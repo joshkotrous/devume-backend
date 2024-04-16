@@ -4,6 +4,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from devume.models.work_experience import WorkExperience
+from devume.models.profile import Profile
 from devume.serializers.work_experience_serializer import WorkExperienceSerializer
 from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
@@ -14,7 +15,9 @@ class WorkExperienceListView(ListAPIView):
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
     
-class WorkExperienceRetrieveView(RetrieveAPIView):
+class WorkExperienceRetrieveView(ListAPIView):
+    lookup_field = 'profile_id'  # Set the lookup field to 'profile_id'
+
     authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
@@ -35,4 +38,5 @@ class WorkExperienceCreateView(CreateAPIView):
 
     def perform_create(self, serializer):
         # Set the user_id field to the ID of the authenticated user
-        serializer.save(profile=self.request.profile)
+        user_profile = Profile.objects.get(user=self.request.user)
+        serializer.save(profile=user_profile)
