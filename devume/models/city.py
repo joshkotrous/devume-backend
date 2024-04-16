@@ -4,7 +4,8 @@ from .country import Country
 
 
 class City(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True, default=int)
+
     name = models.CharField(max_length=100)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
 

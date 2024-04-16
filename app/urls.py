@@ -20,6 +20,7 @@ from devume.views.profiles_view import ProfileRetrieveView, ProfileCreateView, P
 from devume.views.users_view import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 from devume.views.login_view import LoginView
 from devume.views.api_key_view import ApiKeyView
+from devume.views.cities_view import CitiesListView, CitiesCreateView, CitiesRetrieveView, CitiesUpdateView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
@@ -37,6 +38,11 @@ urlpatterns = [
     path('api/profiles/create/', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/update/<uuid:pk>', ProfileUpdateView.as_view(), name="profiles_update"),
     path('api/keys/create', ApiKeyView.as_view(), name="api_key_create"),
+    path('api/cities', CitiesListView.as_view(), name="cities_get"),
+    path('api/cities/create', CitiesCreateView.as_view(), name="cities_create"),
+    path('api/cities/<int:pk>', CitiesRetrieveView.as_view(), name='cities_retrieve'),
+    path('api/cities/<int:pk>', CitiesUpdateView.as_view(), name='cities_update')
+
 
 
 
