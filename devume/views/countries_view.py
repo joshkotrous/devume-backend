@@ -3,7 +3,7 @@ from rest_framework.generics import RetrieveAPIView, UpdateAPIView, CreateAPIVie
 from rest_framework.permissions import IsAuthenticated
 from devume.models.country import Country
 from devume.authentication.bearer_authentication import BearerTokenAuthentication
-from devume.serializers.city_serializer import CountrySerializer
+from devume.serializers.country_serializer import CountrySerializer
 
 class CountriesListView(ListAPIView):
     authentication_classes = [BearerTokenAuthentication]
