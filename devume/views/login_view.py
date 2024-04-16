@@ -24,8 +24,6 @@ class LoginView(APIView):
 
                 return Response({'session_id': request.session.session_key, 'token': token.key})
             else:
-                print("TesT")
-
                 return Response({'message': 'Invalid credentials'}, status=401)
         except Exception as e:
             return Response({'message': 'Error occurred: ' +  str(e)}, status=500)
