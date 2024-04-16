@@ -1,11 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 
 class LoginView(APIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication]
 
     def post(self, request):
         try:
@@ -23,6 +23,8 @@ class LoginView(APIView):
 
                 return Response({'session_id': request.session.session_key, 'token': token.key})
             else:
-                return Response({'message': 'Invalid credentials'}, status=400)
+                print("TesT")
+
+                return Response({'message': 'Invalid credentials'}, status=401)
         except Exception as e:
-            return Response({'message': 'Error occurred: ' +  str(e)}, status=400)
+            return Response({'message': 'Error occurred: ' +  str(e)}, status=500)

@@ -5,7 +5,6 @@ from rest_framework.authentication import TokenAuthentication
 from devume.permissions.is_super_user_permission import IsSuperuserPermission
 from devume.models.api_key import ApiKey
 from devume.serializers.api_key_serializer import ApiKeySerializer
-
 class ApiKeyView(CreateAPIView):
     authentication_classes=[TokenAuthentication]
     permission_classes=[IsSuperuserPermission]
