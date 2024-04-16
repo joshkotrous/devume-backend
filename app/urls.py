@@ -23,6 +23,7 @@ from devume.views.api_key_view import ApiKeyView
 from devume.views.cities_view import CitiesListView, CitiesCreateView, CitiesRetrieveView, CitiesUpdateView
 from devume.views.countries_view import CountriesCreateView, CountriesListView, CountriesRetrieveView, CountriesUpdateView
 from devume.views.states_view import StatesCreateView, StatesListView, StatesRetrieveView, StatesUpdateView
+from devume.views.work_experience_view import WorkExperienceCreateView, WorkExperienceListView, WorkExperienceRetrieveView, WorkExperienceUpdateView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
@@ -52,9 +53,8 @@ urlpatterns = [
     path('api/states/<int:pk>', StatesRetrieveView.as_view(), name="states_retrieve"),
     path('api/states/create', StatesCreateView.as_view(), name="states_create"),
     path('api/states/<int:pk>/update', StatesUpdateView.as_view(), name="states_update"),
-
-
-
+    path('api/work_experience', WorkExperienceListView.as_view(), name='work_experience_list'),
+    path('api/work_experience/<uuid:profile>', WorkExperienceRetrieveView.asView(), name='work_experience_retrieve')
 
 
 ]

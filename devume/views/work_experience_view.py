@@ -8,7 +8,7 @@ from devume.serializers.work_experience_serializer import WorkExperienceSerializ
 from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
 
-class WorkExperienceListview(ListAPIView):
+class WorkExperienceListView(ListAPIView):
     authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
