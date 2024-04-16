@@ -3,9 +3,10 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
+from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
 class LoginView(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
 
     def post(self, request):
         try:
