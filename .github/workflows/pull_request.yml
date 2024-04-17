@@ -11,7 +11,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        db: [postgres]
+        db: [sqlite, postgres, mysql]
         python-version: [3.12]
         include:
           - db: postgres
@@ -24,7 +24,7 @@ jobs:
         image: postgres:10
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ghaction
+          POSTGRES_PASSWORD: hunter2
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -32,6 +32,17 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: hunter2
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -48,6 +59,6 @@ jobs:
         DB: ${{ matrix.db }}
         DB_HOST: 127.0.0.1
         DB_PORT: ${{ matrix.db_port }}
-        DB_PASSWORD: ghaction
+        DB_PASSWORD: hunter2
       run: |
         python manage.py test
