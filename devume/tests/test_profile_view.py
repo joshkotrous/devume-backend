@@ -11,12 +11,8 @@ class ProfileViewTestCase(APITestCase):
         self.username = "test_user"
         self.password = "test_password"
         self.username2 = "test_user2"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
-        self.user2 = User.objects.create_user(
-            username=self.username2, password=self.password
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+        self.user2 = User.objects.create_user(username=self.username2, password=self.password)
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_profiles_list_session_auth(self):
@@ -52,9 +48,7 @@ class ProfileViewTestCase(APITestCase):
     def test_get_profile_api_key_auth(self):
         headers = {"x-api-key": str(self.apikey.key)}
         self.profile = Profile.objects.create(user=self.user)
-        response = self.client.get(
-            f"/api/profiles/{self.profile.uuid}", headers=headers
-        )
+        response = self.client.get(f"/api/profiles/{self.profile.uuid}", headers=headers)
         self.assertEqual(response.status_code, 200)
         self.assertNotIsInstance(response.json(), list)
 
@@ -72,9 +66,7 @@ class ProfileViewTestCase(APITestCase):
             format="json",
         )
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(
-            response.json()["birth_date"], profile_data["birth_date"]
-        )
+        self.assertEquals(response.json()["birth_date"], profile_data["birth_date"])
         self.assertEquals(response.json()["bio"], profile_data["bio"])
         self.assertEquals(response.json()["skills"], profile_data["skills"])
 

@@ -77,9 +77,7 @@ urlpatterns = [
     path("api/health", HealthCheckView.as_view(), name="health_check"),
     path("api/health/", HealthCheckView.as_view(), name="health_check"),
     path("api/users", UserListView.as_view(), name="users_retrieve"),
-    path(
-        "api/users/<int:pk>", UserRetrieveView.as_view(), name="users_retrieve"
-    ),
+    path("api/users/<int:pk>", UserRetrieveView.as_view(), name="users_retrieve"),
     path("api/users/create", UserCreateView.as_view(), name="user_create"),
     path("api/users/create/", UserCreateView.as_view(), name="user_create"),
     path(
@@ -111,9 +109,7 @@ urlpatterns = [
     ),
     path("api/keys/create", ApiKeyCreateView.as_view(), name="api_key_create"),
     path("api/cities", CitiesListView.as_view(), name="cities_get"),
-    path(
-        "api/cities/create", CitiesCreateView.as_view(), name="cities_create"
-    ),
+    path("api/cities/create", CitiesCreateView.as_view(), name="cities_create"),
     path(
         "api/cities/<int:pk>",
         CitiesRetrieveView.as_view(),
@@ -146,9 +142,7 @@ urlpatterns = [
         StatesRetrieveView.as_view(),
         name="states_retrieve",
     ),
-    path(
-        "api/states/create", StatesCreateView.as_view(), name="states_create"
-    ),
+    path("api/states/create", StatesCreateView.as_view(), name="states_create"),
     path(
         "api/states/<int:pk>/update",
         StatesUpdateView.as_view(),

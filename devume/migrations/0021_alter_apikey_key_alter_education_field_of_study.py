@@ -22,8 +22,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="education",
             name="field_of_study",
-            field=models.CharField(
-                blank=True, default="", max_length=200, null=True
-            ),
+            field=models.CharField(blank=True, default="", max_length=200, null=True),
         ),
     ]

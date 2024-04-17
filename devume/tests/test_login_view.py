@@ -8,9 +8,7 @@ class LoginViewTestCase(APITestCase):
     def setUp(self):
         self.username = "test_user"
         self.password = "test_password"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_login(self):
@@ -21,9 +19,7 @@ class LoginViewTestCase(APITestCase):
             "password": self.password,
         }
 
-        response = self.client.post(
-            "/api/login", user_data, format="json", headers=headers
-        )
+        response = self.client.post("/api/login", user_data, format="json", headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self):

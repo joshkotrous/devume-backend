@@ -5,9 +5,7 @@ from devume.models.country import Country
 
 class StateModelTestCase(TestCase):
     def setUp(self):
-        self.country = Country.objects.create(
-            name="United States", country_code="US"
-        )
+        self.country = Country.objects.create(name="United States", country_code="US")
 
     def test_states_create(self):
         self.state = State.objects.create(

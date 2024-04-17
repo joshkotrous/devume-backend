@@ -8,9 +8,7 @@ class DegreesViewTestCase(APITestCase):
     def setUp(self):
         self.username = "test_user"
         self.password = "test_password"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_get_degrees_api_key_auth(self):

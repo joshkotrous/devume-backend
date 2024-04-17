@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 from dotenv import load_dotenv
 from pathlib import Path
 import os
@@ -23,9 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-(%tzg#m1glga%i-mqyq$0(jsovbn2n2$_jw6vk(989vq-&zb!b"
-)
+SECRET_KEY = "django-insecure-(%tzg#m1glga%i-mqyq$0(jsovbn2n2$_jw6vk(989vq-&zb!b"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -145,6 +144,6 @@ APPEND_SLASH = True
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "devume.utils.general_exception_handler.general_exception_handler",
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "devume.authentication.bearer_authentication.BearerTokenAuthentication",  # Replace with your custom authentication class
+        "devume.authentication.bearer_authentication.BearerTokenAuthentication",
     ],
 }

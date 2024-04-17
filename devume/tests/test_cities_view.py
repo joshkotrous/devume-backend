@@ -10,18 +10,10 @@ class CitiesViewTestCase(APITestCase):
     def setUp(self):
         self.username = "test_user"
         self.password = "test_password"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
-        self.country = Country.objects.create(
-            name="United States", country_code="US"
-        )
-        self.state = State.objects.create(
-            name="New York", country_id=self.country.id
-        )
-        self.city = City.objects.create(
-            name="New York City", state_id=self.state.id
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+        self.country = Country.objects.create(name="United States", country_code="US")
+        self.state = State.objects.create(name="New York", country_id=self.country.id)
+        self.city = City.objects.create(name="New York City", state_id=self.state.id)
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_cities_list_api_key_auth(self):

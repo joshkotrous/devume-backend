@@ -11,10 +11,11 @@ repos:
   hooks:
   - id: black
     language_version: python3.10
-    args: [--line-length=79]  # Specify the line length here
+    args: [--line-length=99]  # Specify the line length here
 
 - repo: https://github.com/PyCQA/flake8
   rev: 7.0.0
   hooks:
     - id: flake8
       additional_dependencies: [flake8-bugbear]
+      args: [--max-line-length=99]  # Specify the line length here

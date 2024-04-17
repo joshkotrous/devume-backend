@@ -9,12 +9,8 @@ class CountriesViewTestCase(APITestCase):
     def setUp(self):
         self.username = "test_user"
         self.password = "test_password"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
-        self.country = Country.objects.create(
-            name="United States", country_code="US"
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+        self.country = Country.objects.create(name="United States", country_code="US")
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_get_countries_api_key_auth(self):

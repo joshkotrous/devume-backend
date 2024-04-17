@@ -9,9 +9,7 @@ class SkillViewTestCase(APITestCase):
     def setUp(self):
         self.username = "test_user"
         self.password = "test_password"
-        self.user = User.objects.create_user(
-            username=self.username, password=self.password
-        )
+        self.user = User.objects.create_user(username=self.username, password=self.password)
         self.apikey = ApiKey.objects.create(user=self.user)
 
     def test_list_skills_session_auth(self):
@@ -37,9 +35,7 @@ class SkillViewTestCase(APITestCase):
     def test_get_skill_api_key_auth(self):
         headers = {"x-api-key": str(self.apikey.key)}
         self.skills = Skill.objects.create(name="Python")
-        response = self.client.get(
-            f"/api/skills/{self.skills.id}", headers=headers
-        )
+        response = self.client.get(f"/api/skills/{self.skills.id}", headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_create_skill_session_auth(self):
@@ -51,9 +47,7 @@ class SkillViewTestCase(APITestCase):
     def test_create_skill_api_key_auth(self):
         headers = {"x-api-key": str(self.apikey.key)}
         skill_data = {"name": "Python"}
-        response = self.client.post(
-            "/api/skills/create", skill_data, headers=headers
-        )
+        response = self.client.post("/api/skills/create", skill_data, headers=headers)
         self.assertEqual(response.status_code, 201)
 
     def test_update_skill(self):

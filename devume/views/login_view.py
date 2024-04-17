@@ -21,6 +21,4 @@ class LoginView(APIView):
             else:
                 return Response({"message": "Invalid credentials"}, status=401)
         except Exception as e:
-            return Response(
-                {"message": "Error occurred: " + str(e)}, status=500
-            )
+            return Response({"message": "Error occurred: " + str(e)}, status=500)

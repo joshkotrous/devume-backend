@@ -22,22 +22,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="city",
             name="id",
-            field=models.IntegerField(
-                default=int, primary_key=True, serialize=False
-            ),
+            field=models.IntegerField(default=int, primary_key=True, serialize=False),
         ),
         migrations.AlterField(
             model_name="country",
             name="id",
-            field=models.IntegerField(
-                default=int, primary_key=True, serialize=False
-            ),
+            field=models.IntegerField(default=int, primary_key=True, serialize=False),
         ),
         migrations.AlterField(
             model_name="state",
             name="id",
-            field=models.IntegerField(
-                default=int, primary_key=True, serialize=False
-            ),
+            field=models.IntegerField(default=int, primary_key=True, serialize=False),
         ),
     ]

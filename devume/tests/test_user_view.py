@@ -31,9 +31,7 @@ class UserViewTestCase(APITestCase):
 
     def test_get_user_api_key_auth(self):
         headers = {"x-api-key": str(self.apikey.key)}
-        response = self.client.get(
-            f"/api/users/{self.superuser.id}", headers=headers
-        )
+        response = self.client.get(f"/api/users/{self.superuser.id}", headers=headers)
         self.assertEqual(response.status_code, 200)
 
     def test_create_user(self):
@@ -44,9 +42,7 @@ class UserViewTestCase(APITestCase):
             "email": "test@example.com",
         }
 
-        response = self.client.post(
-            "/api/users/create", user_data, format="json", headers=headers
-        )
+        response = self.client.post("/api/users/create", user_data, format="json", headers=headers)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(User.objects.count(), 2)
 
@@ -64,21 +60,15 @@ class UserViewTestCase(APITestCase):
             "first_name": "test",
             "last_name": "test",
         }
-        response = self.client.post(
-            "/api/users/create", user_data, format="json", headers=headers
-        )
+        response = self.client.post("/api/users/create", user_data, format="json", headers=headers)
         response2 = self.client.patch(
             "/api/users/" + str(response.data["id"]) + "/update",
             update_user_data,
             format="json",
         )
         self.assertEquals(response2.status_code, 200)
-        self.assertEquals(
-            response2.data["first_name"], update_user_data["first_name"]
-        )
-        self.assertEquals(
-            response2.data["last_name"], update_user_data["last_name"]
-        )
+        self.assertEquals(response2.data["first_name"], update_user_data["first_name"])
+        self.assertEquals(response2.data["last_name"], update_user_data["last_name"])
 
     def tearDown(self):
         return None
