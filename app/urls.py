@@ -19,7 +19,6 @@ from django.urls import path, re_path
 from devume.views.profiles_view import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView, ProfileListView
 from devume.views.users_view import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 from devume.views.login_view import LoginView
-from devume.views.api_key_view import ApiKeyView
 from devume.views.cities_view import CitiesListView, CitiesCreateView, CitiesRetrieveView, CitiesUpdateView
 from devume.views.countries_view import CountriesCreateView, CountriesListView, CountriesRetrieveView, CountriesUpdateView
 from devume.views.states_view import StatesCreateView, StatesListView, StatesRetrieveView, StatesUpdateView
@@ -28,12 +27,13 @@ from devume.views.education_view import EducationCreateView, EducationListView, 
 from devume.views.degree_view import DegreeListView
 from devume.views.not_found_view import NotFound
 from devume.views.skills_view import SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView
-
+from devume.views.api_key_view import ApiKeyCreateView
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/login', LoginView.as_view(), name="login"),
     path('api/login/', LoginView.as_view(), name="login"),
+
     path('api/users', UserListView.as_view(), name="users_retrieve"),
     path('api/users/<int:pk>', UserRetrieveView.as_view(), name="users_retrieve"),
     path('api/users/create', UserCreateView.as_view(), name="user_create"),
@@ -45,11 +45,11 @@ urlpatterns = [
     path('api/profiles/create', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/create/', ProfileCreateView.as_view(), name="profiles_create"),
     path('api/profiles/update/<uuid:pk>', ProfileUpdateView.as_view(), name="profiles_update"),
-    path('api/keys/create', ApiKeyView.as_view(), name="api_key_create"),
+    path('api/keys/create', ApiKeyCreateView.as_view(), name="api_key_create"),
     path('api/cities', CitiesListView.as_view(), name="cities_get"),
     path('api/cities/create', CitiesCreateView.as_view(), name="cities_create"),
     path('api/cities/<int:pk>', CitiesRetrieveView.as_view(), name='cities_retrieve'),
-    path('api/cities/<int:pk>', CitiesUpdateView.as_view(), name='cities_update'),
+    path('api/cities/<int:pk>/update', CitiesUpdateView.as_view(), name='cities_update'),
     path('api/countries', CountriesListView.as_view(), name="countries_list"),
     path('api/countries/<int:pk>', CountriesRetrieveView.as_view(), name="countries_retrieve"),
     path('api/countries/create', CountriesCreateView.as_view(), name="countries_create"),

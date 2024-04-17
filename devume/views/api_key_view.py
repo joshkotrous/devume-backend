@@ -1,13 +1,11 @@
 from rest_framework.generics import CreateAPIView
-from rest_framework.response import Response
-from rest_framework.authentication import TokenAuthentication
 
 from devume.permissions.is_super_user_permission import IsSuperuserPermission
 from devume.models.api_key import ApiKey
 from devume.serializers.api_key_serializer import ApiKeySerializer
 from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
-class ApiKeyView(CreateAPIView):
+class ApiKeyCreateView(CreateAPIView):
     authentication_classes=[BearerTokenAuthentication]
     permission_classes=[IsSuperuserPermission]
     queryset = ApiKey.objects.all()
