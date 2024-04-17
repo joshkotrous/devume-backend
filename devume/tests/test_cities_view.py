@@ -1,7 +1,5 @@
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
-
 from devume.models.city import City
 from devume.models.country import Country
 from devume.models.state import State
@@ -13,7 +11,6 @@ class CitiesViewTestCase(APITestCase):
         self.username = 'test_user'
         self.password = 'test_password'
         self.user = User.objects.create_user(username=self.username, password=self.password)
-        self.token = Token.objects.create(user=self.user)
         self.country = Country.objects.create(name='United States', country_code='US')
         self.state = State.objects.create(name="New York", country_id=self.country.id)
         self.city = City.objects.create(name='New York City', state_id=self.state.id)
@@ -28,7 +25,6 @@ class CitiesViewTestCase(APITestCase):
     def test_cities_list_session_auth(self):
         self.client.force_login(self.user)
         response = self.client.get('/api/cities')
-        print(response.data)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.status_code, 200)
 

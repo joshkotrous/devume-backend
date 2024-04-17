@@ -6,11 +6,10 @@ from rest_framework.permissions import IsAuthenticated
 from devume.models.work_experience import WorkExperience
 from devume.models.profile import Profile
 from devume.serializers.work_experience_serializer import WorkExperienceSerializer
-from devume.authentication.bearer_authentication import BearerTokenAuthentication
-
+from devume.authentication.api_key_authentication import ApiKeyAuthentication
 
 class WorkExperienceListView(ListAPIView):
-    authentication_classes = [BearerTokenAuthentication]
+    authentication_classes = [SessionAuthentication, ApiKeyAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
@@ -18,19 +17,19 @@ class WorkExperienceListView(ListAPIView):
 class WorkExperienceRetrieveView(ListAPIView):
     lookup_field = 'profile_id'  # Set the lookup field to 'profile_id'
 
-    authentication_classes = [BearerTokenAuthentication]
+    authentication_classes = [SessionAuthentication, ApiKeyAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
 
 class WorkExperienceUpdateView(UpdateAPIView):
-    authentication_classes = [BearerTokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
 
 class WorkExperienceCreateView(CreateAPIView):
-    authentication_classes = [BearerTokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
