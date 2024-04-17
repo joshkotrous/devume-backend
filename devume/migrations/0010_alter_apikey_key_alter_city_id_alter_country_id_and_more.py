@@ -6,28 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0009_apikey'),
+        ("devume", "0009_apikey"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='21abc1abc8584d8481d31f325e09c2a2', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="21abc1abc8584d8481d31f325e09c2a2",
+                max_length=255,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='city',
-            name='id',
-            field=models.IntegerField(default=int, primary_key=True, serialize=False),
+            model_name="city",
+            name="id",
+            field=models.IntegerField(
+                default=int, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='country',
-            name='id',
-            field=models.IntegerField(default=int, primary_key=True, serialize=False),
+            model_name="country",
+            name="id",
+            field=models.IntegerField(
+                default=int, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='state',
-            name='id',
-            field=models.IntegerField(default=int, primary_key=True, serialize=False),
+            model_name="state",
+            name="id",
+            field=models.IntegerField(
+                default=int, primary_key=True, serialize=False
+            ),
         ),
     ]

@@ -6,18 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0021_alter_apikey_key_alter_education_field_of_study'),
+        ("devume", "0021_alter_apikey_key_alter_education_field_of_study"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='72023815cbe5472283ec27bd638c48dd', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="72023815cbe5472283ec27bd638c48dd",
+                max_length=255,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='skill',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="skill",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True,
+                primary_key=True,
+                serialize=False,
+                verbose_name="ID",
+            ),
         ),
     ]

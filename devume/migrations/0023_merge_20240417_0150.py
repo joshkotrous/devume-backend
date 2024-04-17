@@ -6,9 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0022_alter_apikey_key_alter_skill_id'),
-        ('devume', '0022_profile_skills_alter_apikey_key_delete_profile_skill'),
+        ("devume", "0022_alter_apikey_key_alter_skill_id"),
+        (
+            "devume",
+            "0022_profile_skills_alter_apikey_key_delete_profile_skill",
+        ),
     ]
 
-    operations = [
-    ]
+    operations = []

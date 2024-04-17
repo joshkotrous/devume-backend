@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0001_initial'),
+        ("devume", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='uuid',
-            field=models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False),
+            model_name="profile",
+            name="uuid",
+            field=models.UUIDField(
+                default=uuid.uuid4, primary_key=True, serialize=False
+            ),
         ),
     ]

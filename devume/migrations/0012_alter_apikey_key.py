@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0011_alter_apikey_key_alter_city_id'),
+        ("devume", "0011_alter_apikey_key_alter_city_id"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='b319144df876403bbad04c7ce2f318e5', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="b319144df876403bbad04c7ce2f318e5",
+                max_length=255,
+                unique=True,
+            ),
         ),
     ]

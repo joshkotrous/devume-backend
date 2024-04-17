@@ -1,6 +1,7 @@
 from django.db import models
 from .profile import Profile
 
+
 class WorkExperience(models.Model):
     # id = models.IntegerField(primary_key = True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -9,6 +10,3 @@ class WorkExperience(models.Model):
     skills = models.JSONField(null=True)
     start_date = models.DateField(null=True)
     end_date = models.DateField(null=True)
-
-
-    

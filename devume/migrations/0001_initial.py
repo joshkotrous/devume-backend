@@ -16,59 +16,99 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='City',
+            name="City",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Country',
+            name="Country",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
-                ('country_code', models.CharField(max_length=2)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=100)),
+                ("country_code", models.CharField(max_length=2)),
             ],
         ),
         migrations.CreateModel(
-            name='Skill',
+            name="Skill",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=100)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
-                ('uuid', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('birth_date', models.DateField()),
-                ('bio', models.CharField(max_length=1000)),
-                ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devume.city')),
-                ('user_id', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "uuid",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=50)),
+                ("last_name", models.CharField(max_length=50)),
+                ("birth_date", models.DateField()),
+                ("bio", models.CharField(max_length=1000)),
+                (
+                    "city",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="devume.city",
+                    ),
+                ),
+                (
+                    "user_id",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Profile_Skill',
+            name="Profile_Skill",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('profile_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devume.profile')),
-                ('skill_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devume.skill')),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "profile_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="devume.profile",
+                    ),
+                ),
+                (
+                    "skill_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="devume.skill",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='State',
+            name="State",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('mame', models.CharField(max_length=50)),
-                ('state_code', models.CharField(max_length=2)),
-                ('country', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='devume.country')),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("mame", models.CharField(max_length=50)),
+                ("state_code", models.CharField(max_length=2)),
+                (
+                    "country",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="devume.country",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='city',
-            name='state',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='devume.state'),
+            model_name="city",
+            name="state",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="devume.state"
+            ),
         ),
     ]

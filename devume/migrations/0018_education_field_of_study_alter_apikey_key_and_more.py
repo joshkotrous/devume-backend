@@ -6,28 +6,48 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0017_alter_apikey_key_alter_workexperience_company_and_more'),
+        (
+            "devume",
+            "0017_alter_apikey_key_alter_workexperience_company_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='education',
-            name='field_of_study',
+            model_name="education",
+            name="field_of_study",
             field=models.CharField(max_length=200, null=True),
         ),
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='bf9975466cc14ec084a9a16e148350c1', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="bf9975466cc14ec084a9a16e148350c1",
+                max_length=255,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='education',
-            name='degree',
-            field=models.CharField(choices=[('Associates', 'Associates'), ('Bachelors', 'Bachelors'), ('Masters', 'Masters'), ('Doctorate', 'Doctorate')], max_length=50),
+            model_name="education",
+            name="degree",
+            field=models.CharField(
+                choices=[
+                    ("Associates", "Associates"),
+                    ("Bachelors", "Bachelors"),
+                    ("Masters", "Masters"),
+                    ("Doctorate", "Doctorate"),
+                ],
+                max_length=50,
+            ),
         ),
         migrations.AlterField(
-            model_name='education',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="education",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True,
+                primary_key=True,
+                serialize=False,
+                verbose_name="ID",
+            ),
         ),
     ]

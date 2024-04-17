@@ -1,6 +1,7 @@
 from django.db import models
 from .country import Country
 
+
 class State(models.Model):
     # id = models.IntegerField(primary_key=True, default=int)
 
@@ -9,4 +10,4 @@ class State(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     def __str__(self):
-      return self.name
+        return self.name
