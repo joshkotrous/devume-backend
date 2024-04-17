@@ -42,7 +42,6 @@ jobs:
     - name: Run Tests
       env:
         DB: ${{ matrix.db }}
-        DATABASE_USER: 'postgres'
         DATABASE_HOST: 127.0.0.1
         DATABASE_PORT: ${{ matrix.db_port }}
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
