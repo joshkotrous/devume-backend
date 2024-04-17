@@ -35,7 +35,6 @@ urlpatterns = [
     path('api/login/', LoginView.as_view(), name="login"),
     path('api/health', HealthCheckView.as_view(), name="health_check"),
     path('api/health/', HealthCheckView.as_view(), name="health_check"),
-
     path('api/users', UserListView.as_view(), name="users_retrieve"),
     path('api/users/<int:pk>', UserRetrieveView.as_view(), name="users_retrieve"),
     path('api/users/create', UserCreateView.as_view(), name="user_create"),
