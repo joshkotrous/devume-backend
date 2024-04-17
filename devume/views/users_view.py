@@ -11,6 +11,7 @@ from rest_framework.authentication import SessionAuthentication
 from devume.permissions.is_super_user_permission import IsSuperuserPermission
 from devume.authentication.api_key_authentication import ApiKeyAuthentication
 
+
 class UserListView(ListAPIView):
     authentication_classes = [SessionAuthentication, ApiKeyAuthentication]
     permission_classes = [IsAuthenticated]

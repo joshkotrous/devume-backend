@@ -3,10 +3,11 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from devume.models.profile import Profile
 
+
 class WorkExperienceModelTestCase(TestCase):
     def setUp(self):
-        self.username = 'test_user'
-        self.password = 'test_password'
+        self.username = "test_user"
+        self.password = "test_password"
         self.user = User.objects.create_user(username=self.username, password=self.password)
         self.profile = Profile.objects.create(user=self.user)
 

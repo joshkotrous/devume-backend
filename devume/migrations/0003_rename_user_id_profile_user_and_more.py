@@ -6,23 +6,23 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0002_alter_profile_uuid'),
+        ("devume", "0002_alter_profile_uuid"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='profile',
-            old_name='user_id',
-            new_name='user',
+            model_name="profile",
+            old_name="user_id",
+            new_name="user",
         ),
         migrations.RenameField(
-            model_name='profile_skill',
-            old_name='profile_id',
-            new_name='profile',
+            model_name="profile_skill",
+            old_name="profile_id",
+            new_name="profile",
         ),
         migrations.RenameField(
-            model_name='profile_skill',
-            old_name='skill_id',
-            new_name='skill',
+            model_name="profile_skill",
+            old_name="skill_id",
+            new_name="skill",
         ),
     ]

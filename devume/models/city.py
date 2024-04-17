@@ -1,6 +1,5 @@
 from django.db import models
 from .state import State
-from .country import Country
 
 
 class City(models.Model):
@@ -11,4 +10,3 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
-

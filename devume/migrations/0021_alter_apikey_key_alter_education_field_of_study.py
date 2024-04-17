@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0020_alter_apikey_key_alter_education_field_of_study'),
+        ("devume", "0020_alter_apikey_key_alter_education_field_of_study"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='58b4f36e06264fc8b6cb38e7a53a33c5', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="58b4f36e06264fc8b6cb38e7a53a33c5",
+                max_length=255,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='education',
-            name='field_of_study',
-            field=models.CharField(blank=True, default='', max_length=200, null=True),
+            model_name="education",
+            name="field_of_study",
+            field=models.CharField(blank=True, default="", max_length=200, null=True),
         ),
     ]

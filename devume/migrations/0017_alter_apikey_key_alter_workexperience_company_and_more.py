@@ -6,38 +6,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0016_alter_apikey_key_alter_workexperience_id'),
+        ("devume", "0016_alter_apikey_key_alter_workexperience_id"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='apikey',
-            name='key',
-            field=models.CharField(default='3841c47758944861bef5a2d051620e34', max_length=255, unique=True),
+            model_name="apikey",
+            name="key",
+            field=models.CharField(
+                default="3841c47758944861bef5a2d051620e34",
+                max_length=255,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='workexperience',
-            name='company',
+            model_name="workexperience",
+            name="company",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='workexperience',
-            name='description',
+            model_name="workexperience",
+            name="description",
             field=models.CharField(max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='workexperience',
-            name='end_date',
+            model_name="workexperience",
+            name="end_date",
             field=models.DateField(null=True),
         ),
         migrations.AlterField(
-            model_name='workexperience',
-            name='skills',
+            model_name="workexperience",
+            name="skills",
             field=models.JSONField(null=True),
         ),
         migrations.AlterField(
-            model_name='workexperience',
-            name='start_date',
+            model_name="workexperience",
+            name="start_date",
             field=models.DateField(null=True),
         ),
     ]

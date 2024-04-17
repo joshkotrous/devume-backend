@@ -7,43 +7,58 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('devume', '0006_rename_mame_state_name'),
+        ("devume", "0006_rename_mame_state_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='profile',
-            name='bio',
+            model_name="profile",
+            name="bio",
             field=models.CharField(blank=True, max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='birth_date',
+            model_name="profile",
+            name="birth_date",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='city',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='devume.city'),
+            model_name="profile",
+            name="city",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devume.city",
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='country',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='devume.country'),
+            model_name="profile",
+            name="country",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devume.country",
+            ),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='first_name',
+            model_name="profile",
+            name="first_name",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='last_name',
+            model_name="profile",
+            name="last_name",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='state',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='devume.state'),
+            model_name="profile",
+            name="state",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="devume.state",
+            ),
         ),
     ]
