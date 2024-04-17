@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -139,9 +141,9 @@ HOST=''
 
 APPEND_SLASH = True
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     # Other DRF settings
-# }
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER' : 'devume.utils.general_exception_handler.general_exception_handler',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'devume.authentication.bearer_authentication.BearerTokenAuthentication',  # Replace with your custom authentication class
+    ],
+}

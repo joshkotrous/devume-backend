@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from devume.views.profiles_view import ProfileRetrieveView, ProfileCreateView, ProfileUpdateView, ProfileListView
 from devume.views.users_view import UserRetrieveView, UserCreateView, UserUpdateView, UserListView
 from devume.views.login_view import LoginView
@@ -26,6 +26,8 @@ from devume.views.states_view import StatesCreateView, StatesListView, StatesRet
 from devume.views.work_experience_view import WorkExperienceCreateView, WorkExperienceListView, WorkExperienceRetrieveView, WorkExperienceUpdateView
 from devume.views.education_view import EducationCreateView, EducationListView, EducationRetrieveView, EducationUpdateView
 from devume.views.degree_view import DegreeListView
+from devume.views.not_found_view import NotFound
+
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
@@ -64,7 +66,8 @@ urlpatterns = [
     path('api/education/<int:pk>/update', EducationUpdateView.as_view(), name='education_update'),
     path('api/education/create', EducationCreateView.as_view(), name='education_create'),
     path('api/degrees', DegreeListView.as_view(), name='degree_list'),
-    
+    re_path(r'^.*$', NotFound.as_view()),
+
     
 
 
