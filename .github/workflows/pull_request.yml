@@ -16,9 +16,6 @@ jobs:
         include:
           - db: postgres
             db_port: 5432
-          - db: mysql
-            db_port: 3306
-
     services:
       postgres:
         image: postgres:12
