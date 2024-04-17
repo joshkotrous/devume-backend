@@ -59,6 +59,7 @@ class ProfileViewTestCase(APITestCase):
         profile_data = {
             'birth_date':'2024-01-01',
             'bio': 'test',
+            'skills': '{[1, 2, 3]}'
         }
         self.client.force_login(self.user)
         self.profile = Profile.objects.create(user=self.user)
@@ -70,6 +71,8 @@ class ProfileViewTestCase(APITestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.json()['birth_date'], profile_data['birth_date'])
         self.assertEquals(response.json()['bio'], profile_data['bio'])
+        self.assertEquals(response.json()['skills'], profile_data['skills'])
+
     
     def test_update_profile_unauth(self):
         profile_data = {
