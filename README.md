@@ -1,5 +1,5 @@
-![Build](https://github.com/joshkotrous/devume-backend/actions/workflows/run_tests.yml/badge.svg)
-![Code Quality](https://github.com/joshkotrous/devume-backend/actions/workflows/check_code_quality.yml/badge.svg)
+![Build](https://github.com/joshkotrous/devume-backend/actions/workflows/ci.yml/badge.svg)
+![Code Quality](https://github.com/joshkotrous/devume-backend/actions/workflows/code_quality.yml/badge.svg)
 # Devume
 ## Setup
 ### Prerequisities
