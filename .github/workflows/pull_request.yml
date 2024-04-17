@@ -21,7 +21,7 @@ jobs:
         image: postgres:12
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: hunter2
+          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -44,6 +44,6 @@ jobs:
         DB: ${{ matrix.db }}
         DB_HOST: 127.0.0.1
         DB_PORT: ${{ matrix.db_port }}
-        DB_PASSWORD: hunter2
+        DB_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       run: |
         python manage.py test
