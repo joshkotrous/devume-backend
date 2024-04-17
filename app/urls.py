@@ -27,6 +27,7 @@ from devume.views.work_experience_view import WorkExperienceCreateView, WorkExpe
 from devume.views.education_view import EducationCreateView, EducationListView, EducationRetrieveView, EducationUpdateView
 from devume.views.degree_view import DegreeListView
 from devume.views.not_found_view import NotFound
+from devume.views.skills_view import SkillListView, SkillCreateView, SkillRetrieveView, SkillUpdateView
 
 
 urlpatterns = [
@@ -66,6 +67,10 @@ urlpatterns = [
     path('api/education/<int:pk>/update', EducationUpdateView.as_view(), name='education_update'),
     path('api/education/create', EducationCreateView.as_view(), name='education_create'),
     path('api/degrees', DegreeListView.as_view(), name='degree_list'),
+    path('api/skills', SkillListView.as_view(), name='skill_list'),
+    path('api/skills/create', SkillCreateView.as_view(), name='skill_create'),
+    path('api/skills/<int:pk>', SkillRetrieveView.as_view(), name='skill_retrieve'),
+    path('api/skills/<int:pk>/update', SkillUpdateView.as_view(), name='skill_update'),
     re_path(r'^.*$', NotFound.as_view()),
 
     
