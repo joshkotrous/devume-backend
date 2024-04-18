@@ -22,5 +22,5 @@ class Profile(models.Model):
     modified_at = models.DateTimeField(auto_now=True, null=True, blank=True)
     skills = models.JSONField(null=True, blank=True, default="")
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
