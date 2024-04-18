@@ -1,7 +1,7 @@
 name: Documentation
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -35,4 +35,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add schema.yml
           git commit -m "Generate documentation"
-          git push origin ${{ github.event.pull_request.head.ref }}
+          git push https://${{ secrets.GH_PAT }}@github.com/joshkotrous/devume-backend.git main
