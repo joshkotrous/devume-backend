@@ -1,31 +1,31 @@
-# name: Code Quality
+name: Code Quality
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-# jobs:
-#   lint:
-#     runs-on: ubuntu-latest
+jobs:
+  lint:
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-#     - name: Set up Python
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: 3.12
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12
 
-#     - name: Install dependencies
-#       run: pip install black flake8
+    - name: Install dependencies
+      run: pip install black flake8
 
-#     - name: Run Black
-#       run: black . --check --diff --line-length 99
+    - name: Run Black
+      run: black . --check --diff --line-length 99
 
-#     - name: Run Flake8
-#       run: flake8 --max-line-length 99
+    - name: Run Flake8
+      run: flake8 --max-line-length 99
