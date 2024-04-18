@@ -70,8 +70,11 @@ from devume.views.skills_view import (
 )
 from devume.views.api_key_view import ApiKeyCreateView
 from devume.views.health_check_view import HealthCheckView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
+
 
 urlpatterns = [
+    path("api/admin", admin.site.urls),
     path("api/admin/", admin.site.urls),
     path("api/login", LoginView.as_view(), name="login"),
     path("api/login/", LoginView.as_view(), name="login"),
@@ -198,5 +201,7 @@ urlpatterns = [
         SkillUpdateView.as_view(),
         name="skill_update",
     ),
+    path("api/schema", SpectacularAPIView.as_view(), name="schema"),
+    path("api/schema/docs", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     re_path(r"^.*$", NotFound.as_view()),
 ]
