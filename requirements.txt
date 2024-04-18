@@ -10,6 +10,8 @@ cfgv==3.4.0
 charset-normalizer==3.3.2
 cleo==2.1.0
 click==8.1.7
+codecov==2.1.13
+coverage==7.4.4
 crashtest==0.4.1
 distlib==0.3.8
 Django==5.0.3
