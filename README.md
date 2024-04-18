@@ -2,7 +2,7 @@
 ![Code Quality](https://github.com/joshkotrous/devume-backend/actions/workflows/code_quality.yml/badge.svg)
 [![codecov](https://codecov.io/gh/joshkotrous/devume-backend/graph/badge.svg?token=Y1D5M3L4OW)](https://codecov.io/gh/joshkotrous/devume-backend)
 # Devumé
-## Prerequisities
+## Prerequisites
 1. Python 3.10
 2. PostgreSQL
 
@@ -70,7 +70,7 @@ Devumé supports Bearer Token authentication, session authentication, and API ke
 2. Create an API key using your bearer token for authentication with
 `POST http://localhost:8000/api/key/create`
 
-3. The API key can be used within the frontend `.env` for authentication or for testing requests
+3. The API key can be used within a `x-api-key` header stored in the frontend `.env` for authentication or for testing requests
 
 ## Pre-commit hooks
 Pre-commit is configured to run Flake8 and Black to ensure code consistency.
