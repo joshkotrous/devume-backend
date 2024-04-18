@@ -70,12 +70,14 @@ from devume.views.skills_view import (
 )
 from devume.views.api_key_view import ApiKeyCreateView
 from devume.views.health_check_view import HealthCheckView
+from devume.views.get_token_view import GenerateTokenView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
 
 urlpatterns = [
     path("api/admin", admin.site.urls),
     path("api/admin/", admin.site.urls),
+    path("api/token", GenerateTokenView.as_view(), name="get_token"),
     path("api/login", LoginView.as_view(), name="login"),
     path("api/login/", LoginView.as_view(), name="login"),
     path("api/health", HealthCheckView.as_view(), name="health_check"),
