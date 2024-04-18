@@ -31,6 +31,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git checkout ${{ github.event.pull_request.head.ref }}
           git add schema.yml
           git commit -m "Generate documentation"
-          git push ${{ github.event.pull_request.head.ref }}
+          git push origin ${{ github.event.pull_request.head.ref }}
