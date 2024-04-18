@@ -73,7 +73,7 @@ Devumé supports Bearer Token authentication, session authentication, and API ke
 3. The API key can be used within the frontend `.env` for authentication or for testing requests
 
 ## Pre-commit hooks
-Pre-commit is configured to run the Flake8 and Black to ensure code consistency.
+Pre-commit is configured to run Flake8 and Black to ensure code consistency.
 
 ## Contributing
 Anyone is welcome to contribute to this repository. If you'd like to contribute, please review the open issues and open a corresponding PR for your change. Pre-commit hooks will be run upon opening your PR and will be required to pass before it can be merged.
