@@ -47,7 +47,7 @@ jobs:
         DB: ${{ matrix.db }}
         DATABASE_HOST: 127.0.0.1
         DATABASE_PORT: ${{ matrix.db_port }}
-        DATABASE_USERNAME: postgres
+        DATABASE_USERNAME: 'postgres'
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       run: |
         coverage run manage.py test
