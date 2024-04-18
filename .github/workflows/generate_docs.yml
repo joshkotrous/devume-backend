@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -31,7 +33,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git checkout ${{ github.event.pull_request.head.ref }}
           git add schema.yml
           git commit -m "Generate documentation"
           git push origin ${{ github.event.pull_request.head.ref }}
