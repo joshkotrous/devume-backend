@@ -33,4 +33,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add schema.yml
           git commit -m "Generate documentation"
-          git push
+          git push ${{ github.event.pull_request.head.ref }}
