@@ -13,8 +13,27 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from dotenv import load_dotenv
 from pathlib import Path
 import os
+import boto3
+import json
 
 load_dotenv()
+
+
+secret_name = os.getenv("AWS_DB_SECRET_NAME")
+region_name = os.getenv("AWS_REGION")
+
+session = boto3.session.Session()
+client = session.client(
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    service_name="secretsmanager",
+    region_name=region_name,
+)
+
+get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+secret_dict = get_secret_value_response["SecretString"]
+secret_dict = json.loads(secret_dict)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,8 +108,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("DATABASE_NAME"),
-        "USER": os.getenv("DATABASE_USERNAME"),
-        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "USER": secret_dict["username"],
+        "PASSWORD": secret_dict["password"],
         "HOST": os.getenv("DATABASE_HOST"),
         "PORT": os.getenv("DATABASE_PORT"),
     }
@@ -131,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
