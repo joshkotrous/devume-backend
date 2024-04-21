@@ -2,7 +2,7 @@ name: EB Deploy
 on:
   push:
     branches:
-    - elastic_beanstalk
+    - elastic-beanstalk
 
 jobs:
   build:
