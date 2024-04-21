@@ -6,6 +6,7 @@ from devume.models.country import Country
 from devume.models.state import State
 from devume.models.work_experience import WorkExperience
 from devume.models.education import Education
+from devume.models.api_key import ApiKey
 
 # Register your models here.
 
@@ -71,6 +72,13 @@ class EducationAdmin(admin.ModelAdmin):
     ]
 
 
+class ApiKeyAdmin(admin.ModelAdmin):
+    fieldSets = [
+        (None, {"fields": ["key"]}),
+        (None, {"fields": ["user"]}),
+    ]
+
+
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(State, StateAdmin)
@@ -78,3 +86,4 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(WorkExperience, WorkExperienceAdmin)
 admin.site.register(Education, EducationAdmin)
+admin.site.register(ApiKey, ApiKeyAdmin)

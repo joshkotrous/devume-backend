@@ -75,6 +75,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
 
 urlpatterns = [
+    path("", HealthCheckView.as_view(), name="health_check"),
     path("api/admin", admin.site.urls),
     path("api/admin/", admin.site.urls),
     path("api/token", GenerateTokenView.as_view(), name="get_token"),
