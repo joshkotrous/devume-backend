@@ -15,6 +15,13 @@ jobs:
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
+    - name: Migrate DB
+      env:
+        DATABASE_NAME: devume
+        AWS_REGION: us-west-2
+        AWS_DB_SECRET_NAME: ${{ secrets.AWS_DB_SECRET_NAME }}
+      run: |
+        coverage run manage.py test
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
       with:
