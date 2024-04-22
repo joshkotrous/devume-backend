@@ -15,6 +15,22 @@ jobs:
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
+    - name: Migrate DB
+      env:
+        AWS_REGION: us-west-2
+        AWS_DB_SECRET_NAME: ${{ secrets.AWS_DB_SECRET_NAME }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DATABASE_HOST:  ${{ secrets.DATABASE_HOST }}
+        DATABASE_NAME: devume
+        DATABASE_PORT: 5432
+        DATABASE_USERNAME: postgres
+        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      run: |
+        python manage.py makemigrations
+        python manage.py migrate
+
+
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v22
       with:

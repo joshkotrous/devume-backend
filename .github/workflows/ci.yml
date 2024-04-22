@@ -50,6 +50,10 @@ jobs:
         DATABASE_PORT: ${{ matrix.db_port }}
         DATABASE_USERNAME: postgres
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        AWS_REGION: us-west-2
+        AWS_DB_SECRET_NAME: ${{ secrets.AWS_DB_SECRET_NAME }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         coverage run manage.py test
 
