@@ -181,4 +181,12 @@ STATIC_ROOT = "static"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_HEADERS = [
+    "Accept",
+    "Accept-Encoding",
+    "Authorization",
+    "Content-Type",
+    "X-Api-Key",
+]
+
 CORS_URLS_REGEX = r"^/api/.*$"
