@@ -9,15 +9,22 @@ class LoginView(APIView):
 
     def post(self, request):
         try:
-            username = request.data.get("username")
             password = request.data.get("password")
 
+            if "email" in request.data:
+                email = request.data.get("email")
+                print(email)
+                user = authenticate(email=email, password=password)
+
+            elif "username" in request.data:
+                username = request.data.get("username")
+                user = authenticate(username=username, password=password)
+
             # Authenticate user
-            user = authenticate(username=username, password=password)
             if user is not None:
                 # Log the user in
                 login(request, user)
-                return Response({"message": "Login successful"})
+                return Response({"message": "Login successful", "user_id": user.id})
             else:
                 return Response({"message": "Invalid credentials"}, status=401)
         except Exception as e:

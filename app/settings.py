@@ -203,3 +203,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_REGEX_WHITELIST = [
     r".*",  # Matches all URLs
 ]
+
+AUTHENTICATION_BACKENDS = [
+    "devume.authentication.username_email_authentication.UsernameOrEmailBackend",
+    "django.contrib.auth.backends.ModelBackend",  # default backend
+]
