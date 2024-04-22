@@ -46,7 +46,7 @@ SECRET_KEY = "django-insecure-(%tzg#m1glga%i-mqyq$0(jsovbn2n2$_jw6vk(989vq-&zb!b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["devume-test.eba-itrkdqsd.us-west-2.elasticbeanstalk.com", "localhost"]
+ALLOWED_HOSTS = ["devume-test.eba-itrkdqsd.us-west-2.elasticbeanstalk.com", "127.0.0.1"]
 
 
 # Application definition
@@ -66,6 +66,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -73,7 +74,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "app.urls"
@@ -189,4 +189,17 @@ CORS_ALLOW_HEADERS = [
     "X-Api-Key",
 ]
 
-CORS_URLS_REGEX = r"^/api/.*$"
+
+CORS_EXPOSE_HEADERS = [
+    "Accept",
+    "Accept-Encoding",
+    "Authorization",
+    "Content-Type",
+    "X-Api-Key",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r".*",  # Matches all URLs
+]
