@@ -208,6 +208,3 @@ AUTHENTICATION_BACKENDS = [
     "devume.authentication.username_email_authentication.UsernameOrEmailBackend",
     "django.contrib.auth.backends.ModelBackend",  # default backend
 ]
-
-CSRF_COOKIE_DOMAIN = "localhost:5173"
-SESSION_COOKIE_DOMAIN = "localhost:5173"
