@@ -188,6 +188,7 @@ CORS_ALLOW_HEADERS = [
     "Content-Type",
     "X-Api-Key",
     "X-CSRFToken",
+    "X-Session-ID",
 ]
 
 
