@@ -209,5 +209,5 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",  # default backend
 ]
 
-CSRF_COOKIE_DOMAIN = "127.0.0.1"
-SESSION_COOKIE_DOMAIN = "127.0.0.1"
+CSRF_COOKIE_DOMAIN = ".localhost"
+# SESSION_COOKIE_DOMAIN = "127.0.0.1"
