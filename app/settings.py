@@ -196,6 +196,7 @@ CORS_EXPOSE_HEADERS = [
     "Authorization",
     "Content-Type",
     "X-Api-Key",
+    "X-CSRFToken",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
