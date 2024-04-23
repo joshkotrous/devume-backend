@@ -35,4 +35,4 @@
 #           git config --local user.name "GitHub Action"
 #           git add schema.yml
 #           git commit -m "Generate documentation"
-#           git push https://${{ secrets.GH_PAT }}@github.com/joshkotrous/devume-backend.git main
+        #   git push https://@github.com/joshkotrous/devume-backend.git main
