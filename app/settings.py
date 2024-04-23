@@ -187,6 +187,7 @@ CORS_ALLOW_HEADERS = [
     "Authorization",
     "Content-Type",
     "X-Api-Key",
+    "X-CSRFToken",
 ]
 
 
