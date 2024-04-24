@@ -34,6 +34,29 @@ class ProfileRetrieveView(RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+    def get_object(self):
+        # Get the profile object using the default queryset
+        profile = super().get_object()
+
+        # Get the user associated with the profile
+        user = (
+            profile.user
+        )  # Assuming the user field in Profile model is a ForeignKey to the User model
+
+        # Combine profile and user data as needed
+        combined_data = {
+            "profile": ProfileSerializer(profile).data,
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name
+                # Add more user fields as needed
+            },
+        }
+
+        return combined_data
+
 
 class ProfileUpdateView(UpdateAPIView):
     authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
