@@ -43,7 +43,7 @@ class ProfileUpdateView(UpdateAPIView):
 
 
 class ProfileCreateView(CreateAPIView):
-    authentication_classes = [ApiKeyAuthentication]
+    authentication_classes = [ApiKeyAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
