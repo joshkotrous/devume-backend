@@ -4,11 +4,15 @@ from rest_framework.generics import (
     CreateAPIView,
     ListAPIView,
 )
+from rest_framework.response import Response
+
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from devume.models.profile import Profile
 from devume.serializers.profile_serializer import ProfileSerializer
+from devume.serializers.user_serializer import UserSerializer
+
 from devume.authentication.api_key_authentication import ApiKeyAuthentication
 from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
@@ -34,28 +38,18 @@ class ProfileRetrieveView(RetrieveAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    def get_object(self):
-        # Get the profile object using the default queryset
+    def get_serializer_context(self):
         profile = super().get_object()
 
-        # Get the user associated with the profile
-        user = (
-            profile.user
-        )  # Assuming the user field in Profile model is a ForeignKey to the User model
+        context = super().get_serializer_context()
+        context["user"] = profile.user
+        return context
 
-        # Combine profile and user data as needed
-        combined_data = {
-            "profile": ProfileSerializer(profile).data,
-            "user": {
-                "id": user.id,
-                "username": user.username,
-                "first_name": user.first_name,
-                "last_name": user.last_name
-                # Add more user fields as needed
-            },
-        }
-
-        return combined_data
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        profile_serializer = self.get_serializer(instance)
+        user_serializer = UserSerializer(instance.user)
+        return Response({"profile": profile_serializer.data, "user": user_serializer.data})
 
 
 class ProfileUpdateView(UpdateAPIView):
