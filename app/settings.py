@@ -187,6 +187,8 @@ CORS_ALLOW_HEADERS = [
     "Authorization",
     "Content-Type",
     "X-Api-Key",
+    "X-CSRFToken",
+    "X-Session-ID",
 ]
 
 
@@ -196,6 +198,7 @@ CORS_EXPOSE_HEADERS = [
     "Authorization",
     "Content-Type",
     "X-Api-Key",
+    "X-CSRFToken",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -209,5 +212,5 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",  # default backend
 ]
 
-CSRF_COOKIE_DOMAIN = "localhost"
-SESSION_COOKIE_DOMAIN = "localhost"
+CSRF_COOKIE_DOMAIN = ""
+# SESSION_COOKIE_DOMAIN = "127.0.0.1"

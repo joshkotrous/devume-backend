@@ -22,7 +22,7 @@ class GenerateTokenView(APIView):
             token = Token.objects.create(user=user)
 
             # Return the token in the response
-            return Response({"token": token.key})
+            return Response({"token": token.key, "user_id": user.id})
         else:
             # Return an error response if authentication fails
             return Response({"error": "Invalid credentials"}, status=400)
