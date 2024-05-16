@@ -37,6 +37,8 @@ class ProfileListView(ListAPIView):
             profile["user"] = {
                 "id": user_instance.id,
                 "username": user_instance.username,
+                "first_name": user_instance.first_name,
+                "last_name": user_instance.last_name,
                 "email": user_instance.email,
                 # Add more user-related data as needed
             }
