@@ -20,7 +20,7 @@ class Profile(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     modified_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    skills = models.JSONField(null=True, blank=True, default="")
+    skills = models.JSONField(null=True, blank=True, default=dict)
 
     # def __str__(self):
     #     return self.name
