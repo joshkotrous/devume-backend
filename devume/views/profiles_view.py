@@ -72,6 +72,12 @@ class ProfileRetrieveView(RetrieveAPIView):
 
 
 class ProfileRetrieveByUserIDView(RetrieveAPIView):
+    authentication_classes = [
+        SessionAuthentication,
+        ApiKeyAuthentication,
+        BearerTokenAuthentication,
+    ]
+    permission_classes = [IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
