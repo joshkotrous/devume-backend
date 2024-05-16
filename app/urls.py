@@ -22,6 +22,7 @@ from devume.views.profiles_view import (
     ProfileCreateView,
     ProfileUpdateView,
     ProfileListView,
+    ProfileRetrieveByUserIDView,
 )
 from devume.views.users_view import (
     UserRetrieveView,
@@ -93,6 +94,16 @@ urlpatterns = [
     ),
     path("api/profiles", ProfileListView.as_view(), name="profiles_list"),
     path("api/profiles/", ProfileListView.as_view(), name="profiles_list"),
+    path(
+        "api/profiles/<uuid:pk>",
+        ProfileRetrieveView.as_view(),
+        name="profiles_retrieve",
+    ),
+    path(
+        "api/profiles/<int:user_id>",
+        ProfileRetrieveByUserIDView.as_view(),
+        name="profiles_retrieve",
+    ),
     path(
         "api/profiles/<uuid:pk>",
         ProfileRetrieveView.as_view(),

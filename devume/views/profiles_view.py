@@ -71,6 +71,20 @@ class ProfileRetrieveView(RetrieveAPIView):
         return Response({"profile": profile_serializer.data, "user": user_serializer.data})
 
 
+class ProfileRetrieveByUserIDView(RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        user_id = self.kwargs.get("user_id")
+        try:
+            profile = Profile.objects.get(user_id=user_id)
+            serializer = self.get_serializer(profile)
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return Response({"detail": "Profile not found"}, status=404)
+
+
 class ProfileUpdateView(UpdateAPIView):
     authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
