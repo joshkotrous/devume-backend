@@ -27,6 +27,23 @@ class ProfileListView(ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        data = []
+        for profile in serializer.data:
+            profile_instance = Profile.objects.get(pk=profile["uuid"])
+            user_instance = profile_instance.user
+            profile["user"] = {
+                "id": user_instance.id,
+                "username": user_instance.username,
+                "email": user_instance.email,
+                # Add more user-related data as needed
+            }
+
+            data.append(profile)
+        return Response(data)
+
 
 class ProfileRetrieveView(RetrieveAPIView):
     authentication_classes = [
