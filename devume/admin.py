@@ -17,9 +17,8 @@ class ProfileAdmin(admin.ModelAdmin):
         (None, {"fields": ["user"]}),
         (None, {"fields": ["birth_date"]}),
         (None, {"fields": ["bio"]}),
-        (None, {"fields": ["city"]}),
     ]
-    list_display = ("uuid", "user", "birth_date", "bio", "city")
+    list_display = ("uuid", "user", "birth_date", "bio")
 
 
 class CityAdmin(admin.ModelAdmin):
