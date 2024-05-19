@@ -7,6 +7,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from devume.models.work_experience import WorkExperience
+from devume.authentication.bearer_authentication import BearerTokenAuthentication
 from devume.models.profile import Profile
 from devume.serializers.work_experience_serializer import (
     WorkExperienceSerializer,
@@ -29,21 +30,33 @@ class WorkExperienceRetrieveView(ListAPIView):
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
 
+    def get_queryset(self):
+        """
+        Get the queryset filtered by the profile object.
+        """
+        # Get the profile object based on the lookup field value
+        profile_id = self.kwargs.get(self.lookup_field)
+        try:
+            profile = Profile.objects.get(uuid=profile_id)
+        except Profile.DoesNotExist:
+            # Return an empty queryset if the profile does not exist
+            return WorkExperience.objects.none()
+
+        # Filter the queryset based on the profile object
+        queryset = WorkExperience.objects.filter(profile=profile)
+
+        return queryset
+
 
 class WorkExperienceUpdateView(UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
 
 
 class WorkExperienceCreateView(CreateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
     serializer_class = WorkExperienceSerializer
-
-    def perform_create(self, serializer):
-        # Set the user_id field to the ID of the authenticated user
-        user_profile = Profile.objects.get(user=self.request.user)
-        serializer.save(profile=user_profile)
