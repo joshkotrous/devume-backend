@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from devume.models.education import Education
+from devume.models.profile import Profile
 
 
 class EducationSerializer(serializers.ModelSerializer):
+    profile = serializers.PrimaryKeyRelatedField(queryset=Profile.objects.all(), required=False)
+
     class Meta:
         model = Education
         fields = "__all__"
