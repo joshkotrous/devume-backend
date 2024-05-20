@@ -26,6 +26,23 @@ class EducationRetrieveView(ListAPIView):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
 
+    def get_queryset(self):
+        """
+        Get the queryset filtered by the profile object.
+        """
+        # Get the profile object based on the lookup field value
+        profile_id = self.kwargs.get(self.lookup_field)
+        try:
+            profile = Profile.objects.get(uuid=profile_id)
+        except Profile.DoesNotExist:
+            # Return an empty queryset if the profile does not exist
+            return Education.objects.none()
+
+        # Filter the queryset based on the profile object
+        queryset = Education.objects.filter(profile=profile)
+
+        return queryset
+
 
 class EducationUpdateView(UpdateAPIView):
     authentication_classes = [SessionAuthentication]
