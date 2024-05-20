@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from devume.permissions.is_super_user_permission import IsSuperuserPermission
 from devume.authentication.api_key_authentication import ApiKeyAuthentication
+from devume.authentication.bearer_authentication import BearerTokenAuthentication
 
 
 class UserListView(ListAPIView):
@@ -27,7 +28,7 @@ class UserRetrieveView(RetrieveAPIView):
 
 
 class UserUpdateView(UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
