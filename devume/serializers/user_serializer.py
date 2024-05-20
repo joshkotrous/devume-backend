@@ -4,6 +4,8 @@ from django.contrib.auth.hashers import make_password
 
 
 class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+
     class Meta:
         model = User
         fields = "__all__"
