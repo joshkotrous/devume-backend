@@ -9,3 +9,5 @@ class Education(models.Model):
     school_name = models.CharField(max_length=200, null=True)
     degree = models.CharField(max_length=50, choices=Degree.choices, null=True)
     field_of_study = models.CharField(max_length=200, null=True, blank=True, default="")
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
