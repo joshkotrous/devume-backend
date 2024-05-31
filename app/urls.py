@@ -54,12 +54,14 @@ from devume.views.work_experience_view import (
     WorkExperienceListView,
     WorkExperienceRetrieveView,
     WorkExperienceUpdateView,
+    WorkExperienceDeleteView,
 )
 from devume.views.education_view import (
     EducationCreateView,
     EducationListView,
     EducationRetrieveView,
     EducationUpdateView,
+    EducationDeleteView,
 )
 from devume.views.degree_view import DegreeListView
 from devume.views.not_found_view import NotFound
@@ -185,6 +187,11 @@ urlpatterns = [
         WorkExperienceUpdateView.as_view(),
         name="work_experience_update",
     ),
+    path(
+        "api/work_experience/<int:pk>/delete",
+        WorkExperienceDeleteView.as_view(),
+        name="work-experience-delete",
+    ),
     path("api/education", EducationListView.as_view(), name="education_list"),
     path(
         "api/education/<uuid:profile_id>",
@@ -201,6 +208,7 @@ urlpatterns = [
         EducationCreateView.as_view(),
         name="education_create",
     ),
+    path("api/education/<int:pk>/delete", EducationDeleteView.as_view(), name="education-delete"),
     path("api/degrees", DegreeListView.as_view(), name="degree_list"),
     path("api/skills", SkillListView.as_view(), name="skill_list"),
     path("api/skills/create", SkillCreateView.as_view(), name="skill_create"),

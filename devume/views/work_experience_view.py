@@ -1,8 +1,4 @@
-from rest_framework.generics import (
-    UpdateAPIView,
-    CreateAPIView,
-    ListAPIView,
-)
+from rest_framework.generics import UpdateAPIView, CreateAPIView, ListAPIView, DestroyAPIView
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -56,6 +52,13 @@ class WorkExperienceUpdateView(UpdateAPIView):
 
 
 class WorkExperienceCreateView(CreateAPIView):
+    authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = WorkExperience.objects.all()
+    serializer_class = WorkExperienceSerializer
+
+
+class WorkExperienceDeleteView(DestroyAPIView):
     authentication_classes = [SessionAuthentication, BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = WorkExperience.objects.all()
