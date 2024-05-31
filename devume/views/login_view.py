@@ -2,10 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from devume.authentication.api_key_authentication import ApiKeyAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class LoginView(APIView):
     authentication_classes = [ApiKeyAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         try:
